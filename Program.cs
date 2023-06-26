@@ -41,6 +41,7 @@ string consoleRead(int len, string charList = "1234567890") {  //Огранич�
     return str;
 }
 
+Console.Clear();
 msgStyle("Введите размер массива: ", "Blue", 0);
 int arrSize = Convert.ToInt32(consoleRead(1, "123456789"));
 Console.WriteLine();
@@ -64,5 +65,18 @@ foreach(string item in array) {
     if(item.Length <= 3) secondArray[count++] = item;
 }
 
-Console.WriteLine(string.Join(",", secondArray));
+string result = "[";
+foreach(string item in array) {
+    result += $"\"{item}\", ";
+}
+result = result.Substring(0, result.Length-2);
+result += "] → [";
+
+foreach(string item in secondArray) {
+    result += $"\"{item}\", ";
+}
+if(secondArray.Length > 0) result = result.Substring(0, result.Length-2);
+result += "]";
+
+msgStyle(result, "Red");
 
